@@ -1,0 +1,279 @@
+/*
+|-------------------------------------------------------------------------------
+| A Comprehensive, Scalable CSS Foundation
+|
+| This file is designed to be a complete starting point for any modern web
+| project. It includes a robust reset, a powerful theme system using CSS
+| variables, a utility-first approach with Tailwind directives, and a
+| modular structure for custom components.
+|-------------------------------------------------------------------------------
+*/
+
+/*
+|-------------------------------------------------------------------------------
+| 1. Modern CSS Reset
+|
+| This is a modified version of Andy Bell's "A Modern CSS Reset," designed to
+| ensure consistent styling across all browsers by removing default margins,
+| paddings, and other inconsistencies.
+|-------------------------------------------------------------------------------
+*/
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: none; /* Prevent font size inflation on mobile */
+  line-height: 1.5;
+  font-family: var(--font-body);
+  color-scheme: light dark;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  text-rendering: optimizeSpeed;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+#root, #__next {
+  isolation: isolate; /* Create a new stacking context */
+  height: 100%;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+ul[role='list'], ol[role='list'] {
+  list-style: none;
+}
+
+
+/*
+|-------------------------------------------------------------------------------
+| 2. CSS Variables for Theming
+|
+| Create a centralized place to define your color palette, typography, and
+| spacing. This allows for easy theming and global style management.
+|-------------------------------------------------------------------------------
+*/
+
+:root {
+  /* Colors */
+  --color-primary: #4f46e5;
+  --color-primary-dark: #3730a3;
+  --color-primary-light: #818cf8;
+  --color-secondary: #f97316;
+  --color-secondary-dark: #c2410c;
+  --color-secondary-light: #fdba74;
+  --color-accent: #10b981;
+  --color-accent-dark: #047857;
+
+  /* Neutrals */
+  --color-white: #ffffff;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Semantic Colors */
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-600);
+  --color-border: var(--color-gray-200);
+  --color-background: var(--color-white);
+  --color-background-offset: var(--color-gray-50);
+  --color-danger: #ef4444;
+  --color-success: #22c55e;
+  --color-warning: #facc15;
+}
+
+/* Dark mode theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text-primary: var(--color-gray-100);
+    --color-text-secondary: var(--color-gray-400);
+    --color-border: var(--color-gray-700);
+    --color-background: var(--color-gray-900);
+    --color-background-offset: var(--color-gray-800);
+  }
+}
+
+/* Typography */
+:root {
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --font-heading: 'Poppins', var(--font-body);
+
+  --font-size-base: 1rem; /* 16px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+}
+
+
+/*
+|-------------------------------------------------------------------------------
+| 3. Tailwind CSS Directives
+|
+| The core of the utility-first approach. These directives are essential for
+| Tailwind to inject its classes into your stylesheet.
+|-------------------------------------------------------------------------------
+*/
+
+/* If not using Tailwind CSS, remove these lines or ensure Tailwind is set up in your build process */
+ @tailwind base; 
+ @tailwind components; 
+ @tailwind utilities; 
+
+
+/*
+|-------------------------------------------------------------------------------
+| 4. Custom Utility Classes
+|
+| Define custom classes that encapsulate common patterns not available in
+| Tailwind, or to provide more semantic names for complex utility combinations.
+|-------------------------------------------------------------------------------
+*/
+@layer utilities {
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-primary-dark {
+    background-color: var(--color-primary-dark);
+  }
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+  .bg-secondary-dark {
+    background-color: var(--color-secondary-dark);
+  }
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+  .ring-primary {
+    --tw-ring-color: var(--color-primary);
+  }
+  .ring-secondary {
+    --tw-ring-color: var(--color-secondary);
+  }
+}
+/* Buttons */
+.btn {
+  @apply inline-flex items-center justify-center font-semibold text-sm px-4 py-2 rounded-lg transition-colors duration-200;
+}
+
+.btn-primary {
+  @apply btn bg-indigo-600 text-white hover:bg-primary-dark focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+}
+
+.btn-secondary {
+  @apply btn bg-secondary text-white hover:bg-secondary-dark focus:ring-2 focus:ring-offset-2 focus:ring-secondary;
+}
+
+.btn-outline {
+  @apply btn border border-gray-300 text-gray-700 hover:bg-gray-100 focus:ring-2 focus:ring-offset-2 focus:ring-gray-300;
+}
+
+/* Card */
+.card {
+  @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700;
+}
+
+
+/*
+|-------------------------------------------------------------------------------
+| 5. Layout & Grid System
+|
+| Define a robust grid system or layout wrappers that can be used throughout
+| the application. This ensures consistent spacing and alignment.
+|-------------------------------------------------------------------------------
+*/
+
+.container {
+  @apply mx-auto px-4 md:px-6 lg:px-8 max-w-7xl;
+}
+
+/*
+  A basic grid system, though Tailwind's grid utilities are usually sufficient.
+*/
+.grid-flow-row {
+  @apply grid gap-4 md:gap-6;
+}
+
+
+
+/*
+|-------------------------------------------------------------------------------
+| 6. Global Animations & Transitions
+|
+| Define keyframes and transitions for elements that require animations, such
+| as loaders, spinners, or hover effects.
+|-------------------------------------------------------------------------------
+*/
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
+}
+
+.animate-pulse > div > div {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-pulse > div > div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.animate-pulse > div > div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.transition-all {
+  transition: all 0.2s ease-in-out;
+}
+
+
+/*
+|-------------------------------------------------------------------------------
+| 7. Accessibility (A11y) & Utility Classes
+|
+| Helper classes for accessibility and other global utilities.
+|-------------------------------------------------------------------------------
+*/
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
