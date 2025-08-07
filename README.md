@@ -170,6 +170,9 @@ This project is licensed under the ISC License.
 
 ## 👥 Authors
 
+- **Priyanshu Rathi** - [@Oyepiyu](https://github.com/Oyepiyu)
+- **Dhairya Jotwani** - [@DJ-007-WEB](https://github.com/DJ-007-WEB)
+- **Shrawani Kotawar** - [@shrawani268](https://github.com/shrawani268)
 - **Dhruv Katheria** - [@DhruvKatheria](https://github.com/DhruvKatheria)
 
 ## 🙏 Acknowledgments
